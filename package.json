@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Using Chart.js in Gitbook",
   "main": "index.js",
+  "engines": {
+      "gitbook": "*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
