@@ -9,8 +9,8 @@ var uuid = (function () {
 
 var PKG = require('./package.json');
 var ASSETS_SCRIPT_FILES = [
-    'd3/d3.min.js',
-    'c3/c3.min.js'
+    'd3.min.js',
+    'c3.min.js'
 ];
 
 
@@ -30,7 +30,7 @@ module.exports = {
     book: {
         assets: './assets',
         css: [
-            'c3/c3.min.css'
+            'c3.min.css'
         ],
         html: {
             'head:end': function (options) {
