@@ -9,9 +9,10 @@ var uuid = (function () {
 
 var PKG = require('./package.json');
 var ASSETS_SCRIPT_FILES = [
-    'moment.min.js',
-    'Chart.min.js'
+    'd3/d3.min.js',
+    'c3/c3.min.js'
 ];
+
 
 var assetsScriptTag = function (staticBase, fileName) {
     return [
@@ -28,6 +29,9 @@ var assetsScriptTag = function (staticBase, fileName) {
 module.exports = {
     book: {
         assets: './assets',
+        css: [
+            'c3/c3.min.css'
+        ],
         html: {
             'head:end': function (options) {
                 return ASSETS_SCRIPT_FILES.map(function (f) {
@@ -55,11 +59,12 @@ module.exports = {
                 } catch (e) {
                     console.error(e);
                 }
+                // bind to element
+                body.bindto = '#' + id;
                 var output = [
                     '<div>',
-                        '<canvas id="' + id + '" width="770" height="400"></canvas>',
-                        '<script>new Chart(',
-                            'document.getElementById("' + id + '").getContext("2d"),',
+                        '<div id="' + id + '"></div>',
+                        '<script>c3.generate(',
                             JSON.stringify(body),
                         ');</script>',
                     '</div>'
