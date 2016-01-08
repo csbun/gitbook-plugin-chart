@@ -1,10 +1,30 @@
 # gitbook-plugin-chart
 
-Using [C3.js](http://c3js.org/) chart library in Gitbook
+Using [C3.js](http://c3js.org/) or [Highcharts](http://www.highcharts.com/) chart library in Gitbook
+
+## Config
+
+### Chart Library
+
+Config in `book.json`:
+
+```json
+{
+    "pluginsConfig": {
+        "chart": {
+            "type": "highcharts"
+        }
+    },
+}
+```
+
+`type` can be `c3` or `highcharts`, default to `c3`.
 
 ## Usage
 
 Insert block in your markdown file:
+
+### Example for [C3.js](http://c3js.org/)
 
 ```
 {% chart %}
@@ -30,3 +50,36 @@ Insert block in your markdown file:
 ```
 
 Getting Start with [C3.js](http://c3js.org/gettingstarted.html#customize).
+
+### Example for [Highcharts](http://www.highcharts.com/)
+
+```
+{% chart %}
+{
+    chart: {
+        // NOT need to specified `renderTo` here
+        type: 'bar'
+    },
+    title: {
+        text: 'Fruit Consumption'
+    },
+    xAxis: {
+        categories: ['Apples', 'Bananas', 'Oranges']
+    },
+    yAxis: {
+        title: {
+            text: 'Fruit eaten'
+        }
+    },
+    series: [{
+        name: 'Jane',
+        data: [1, 0, 4]
+    }, {
+        name: 'John',
+        data: [5, 7, 3]
+    }]
+}
+{% endchart %}
+```
+
+Getting Start [Highcharts](http://www.highcharts.com/docs/getting-started/your-first-chart).

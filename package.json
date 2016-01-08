@@ -1,13 +1,13 @@
 {
   "name": "gitbook-plugin-chart",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Using chart in Gitbook",
-  "main": "index.js",
+  "main": "build/index.js",
   "engines": {
-      "gitbook": "*"
+    "gitbook": "*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "node rollup.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/csbun/gitbook-plugin-chart/issues"
   },
-  "homepage": "https://github.com/csbun/gitbook-plugin-chart#readme"
+  "homepage": "https://github.com/csbun/gitbook-plugin-chart#readme",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.0.0",
+    "rollup": "^0.21.0",
+    "rollup-plugin-babel": "^2.1.0"
+  }
 }
