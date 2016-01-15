@@ -39,6 +39,8 @@ var chartFns = Object.freeze({
     highcharts: highcharts
 });
 
+var FORMAT_YAML = 'yaml';
+
 var CHART_TYPE = ['c3', 'highcharts'];
 
 var ASSETS_SCRIPT_FILES = {
@@ -77,9 +79,18 @@ module.exports = {
                 var id = uuid();
                 var body = {};
                 try {
-                    // TODO: Avoiding `eval`
-                    // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
-                    eval('body=' + blk.body.trim());
+                    // get string in {% chart %}
+                    var bodyString = blk.body.trim();
+                    if (blk.kwargs.format === FORMAT_YAML) {
+                        // load yaml into body:
+                        body = require('js-yaml').safeLoad(bodyString);
+                    } else {
+                        // just think it as json:
+                        // TODO: Avoiding `eval`
+                        // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
+                        eval('body=' + bodyString);
+                    }
+                    console.log(JSON.stringify(body, null, 4));
                 } catch (e) {
                     console.error(e);
                 }

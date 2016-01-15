@@ -1,6 +1,6 @@
 # gitbook-plugin-chart
 
-Using [C3.js](http://c3js.org/) or [Highcharts](http://www.highcharts.com/) chart library in Gitbook
+Using [C3.js](http://c3js.org/) or [Highcharts](http://www.highcharts.com/) chart library in Gitbook.
 
 ## Config
 
@@ -82,4 +82,21 @@ Getting Start with [C3.js](http://c3js.org/gettingstarted.html#customize).
 {% endchart %}
 ```
 
-Getting Start [Highcharts](http://www.highcharts.com/docs/getting-started/your-first-chart).
+Getting Start with [Highcharts](http://www.highcharts.com/docs/getting-started/your-first-chart).
+
+### Example for [YAML](http://yaml.org/)
+
+```
+{% chart format="yaml" %}
+data:
+    type: bar
+    columns:
+        - [data1, 30, 200, 100, 400, 150, 250]
+        - [data2, 50, 20, 10, 40, 15, 25]
+    axes:
+        data2: y2
+axis:
+    y2:
+        show: true
+{% endchart %}
+```

@@ -1,13 +1,14 @@
 {
   "name": "gitbook-plugin-chart",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Using chart in Gitbook",
   "main": "build/index.js",
   "engines": {
     "gitbook": "*"
   },
   "scripts": {
-    "prepublish": "node rollup.js"
+    "prepublish": "node rollup.js",
+    "dev": "nodemon --watch src rollup.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "babel-preset-es2015-rollup": "^1.0.0",
     "rollup": "^0.21.0",
     "rollup-plugin-babel": "^2.1.0"
+  },
+  "dependencies": {
+    "js-yaml": "^3.5.2"
   }
 }

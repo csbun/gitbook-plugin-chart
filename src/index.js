@@ -2,6 +2,8 @@
 import { uuid, assetsTag } from './util';
 import * as chartFns from './chart';
 
+const FORMAT_YAML = 'yaml';
+
 const CHART_TYPE = [
     'c3',
     'highcharts'
@@ -49,9 +51,18 @@ module.exports = {
                 let id = uuid();
                 let body = {};
                 try {
-                    // TODO: Avoiding `eval`
-                    // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
-                    eval('body=' + blk.body.trim());
+                    // get string in {% chart %}
+                    let bodyString = blk.body.trim();
+                    if (blk.kwargs.format === FORMAT_YAML) {
+                        // load yaml into body:
+                        body = require('js-yaml').safeLoad(bodyString);
+                    } else {
+                        // just think it as json:
+                        // TODO: Avoiding `eval`
+                        // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
+                        eval('body=' + bodyString);
+                    }
+                    console.log(JSON.stringify(body, null, 4));
                 } catch (e) {
                     console.error(e);
                 }
