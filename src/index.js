@@ -62,7 +62,6 @@ module.exports = {
                         // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
                         eval('body=' + bodyString);
                     }
-                    console.log(JSON.stringify(body, null, 4));
                 } catch (e) {
                     console.error(e);
                 }
