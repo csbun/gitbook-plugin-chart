@@ -29,10 +29,8 @@ module.exports = {
                         // load yaml into body:
                         body = require('js-yaml').safeLoad(bodyString);
                     } else {
-                        // just think it as json:
-                        // TODO: Avoiding `eval`
-                        // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
-                        eval('body=' + bodyString);
+                        // this is pure JSON
+                        body = JSON.parse(bodyString);
                     }
                 } catch (e) {
                     console.error(e);
