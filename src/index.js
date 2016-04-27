@@ -12,7 +12,7 @@ module.exports = {
     },
     hooks: {
         init: function () {
-            let pluginConfig = (this.options.pluginsConfig || {}).chart || {};
+            let pluginConfig = this.config.get('pluginsConfig.chart');
             let type = pluginConfig.type;
             chartScriptFn = chartFns[type];
         }
