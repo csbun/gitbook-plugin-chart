@@ -1,24 +1,8 @@
 'use strict';
 
-var path = require('path');
-path = 'default' in path ? path['default'] : path;
-
 var _uuidCounter = 0;
 function uuid() {
-    return 'plugin-chart-' + ++_uuidCounter;
-};
-
-var PKG = require('../package.json');
-function assetsTag(staticBase, fileName) {
-    var filePath = staticBase + '/plugins/' + PKG.name + '/' + fileName;
-    switch (path.extname(fileName)) {
-        case '.js':
-            return '<script src="' + filePath + '"></script>';
-        case '.css':
-            return '<link rel="stylesheet" href="' + filePath + '">';
-        default:
-            return '';
-    }
+    return "plugin-chart-" + ++_uuidCounter;
 };
 
 function c3(id, body) {
@@ -41,35 +25,16 @@ var chartFns = Object.freeze({
 
 var FORMAT_YAML = 'yaml';
 
-var CHART_TYPE = ['c3', 'highcharts'];
-
-var ASSETS_SCRIPT_FILES = {
-    c3: ['c3/c3.min.css', 'c3/d3.min.js', 'c3/c3.min.js'],
-    highcharts: ['highcharts/highcharts.js']
-};
-
-var assetsFiles = [];
 var chartScriptFn = function chartScriptFn() {};
 
 module.exports = {
     book: {
-        assets: './assets',
-        html: {
-            'head:end': function headEnd(options) {
-                return assetsFiles.map(function (f) {
-                    return assetsTag(options.staticBase, f);
-                }).join('');
-            }
-        }
+        assets: './assets'
     },
     hooks: {
         init: function init() {
-            var pluginConfig = (this.options.pluginsConfig || {}).chart || {};
+            var pluginConfig = this.config.get('pluginsConfig.chart');
             var type = pluginConfig.type;
-            if (CHART_TYPE.indexOf(type) < 0) {
-                type = CHART_TYPE[0];
-            }
-            assetsFiles = ASSETS_SCRIPT_FILES[type];
             chartScriptFn = chartFns[type];
         }
     },
@@ -85,10 +50,8 @@ module.exports = {
                         // load yaml into body:
                         body = require('js-yaml').safeLoad(bodyString);
                     } else {
-                        // just think it as json:
-                        // TODO: Avoiding `eval`
-                        // https://github.com/rollup/rollup/wiki/Troubleshooting#avoiding-eval
-                        eval('body=' + bodyString);
+                        // this is pure JSON
+                        body = JSON.parse(bodyString);
                     }
                 } catch (e) {
                     console.error(e);
