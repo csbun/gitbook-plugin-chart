@@ -32,5 +32,15 @@
   },
   "dependencies": {
     "js-yaml": "^3.5.2"
+  },
+  "gitbook": {
+    "properties": {
+      "type": {
+        "type": "string",
+        "description": "Chart library",
+        "enum": ["c3", "highcharts"],
+        "default": "c3"
+      }
+    }
   }
 }
