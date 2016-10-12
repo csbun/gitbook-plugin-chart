@@ -69,6 +69,8 @@ You SHOULD NOT specify the `bindto` property for the chart.
 {% endchart %}
 ```
 
+Getting Start with [C3.js](http://c3js.org/gettingstarted.html#customize).
+
 ### Example for C3.js in [YAML](http://yaml.org/)
 
 ```
@@ -85,8 +87,6 @@ axis:
         show: true
 {% endchart %}
 ```
-
-Getting Start with [C3.js](http://c3js.org/gettingstarted.html#customize).
 
 ### Example for [Highcharts](http://www.highcharts.com/)
 
