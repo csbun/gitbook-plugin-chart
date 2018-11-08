@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "gitbook init",
+    "start": "gitbook serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gitbook-plugin-chart": "^0.2.0"
+  },
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2"
+  }
+}

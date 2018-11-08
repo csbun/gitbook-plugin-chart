@@ -1,0 +1,8 @@
+{
+  "plugins": ["chart"],
+  "pluginsConfig": {
+      "chart": {
+          "type": "c3"
+      }
+  }
+}

@@ -10,11 +10,12 @@ Config in `book.json`:
 
 ```json
 {
-    "pluginsConfig": {
-        "chart": {
-            "type": "highcharts"
-        }
-    },
+  "plugins": [ "chart" ],
+  "pluginsConfig": {
+      "chart": {
+          "type": "highcharts"
+      }
+  }
 }
 ```
 
@@ -45,7 +46,7 @@ See the examples below.
 
 ### Example for [C3.js](http://c3js.org/)
 
-You SHOULD NOT specify the `bindto` property for the chart.
+You **SHOULD NOT** specify the `bindto` property for the chart.
 
 ```
 {% chart %}
@@ -53,16 +54,15 @@ You SHOULD NOT specify the `bindto` property for the chart.
     "data": {
         "type": "bar",
         "columns": [
-            ["data1", 30, 200, 100, 400, 150, 250],
-            ["data2", 50, 20, 10, 40, 15, 25]
-        ],
-        "axes": {
-            "data2": "y2"
-        }
+            ["data1", 30, 200, 100, 400, 150, 1500, 2500],
+            ["data2", 50, 100, 300, 450, 650, 250, 1320]
+        ]
     },
     "axis": {
-        "y2": {
-            "show": true
+        "y": {
+            "tick": {
+                "format": d3.format("$,")
+            }
         }
     }
 }
@@ -90,7 +90,7 @@ axis:
 
 ### Example for [Highcharts](http://www.highcharts.com/)
 
-You SHOULD NOT specify the `renderTo` property for the chart.
+You **SHOULD NOT** specify the `renderTo` property for the chart.
 
 ```
 {% chart %}
@@ -121,4 +121,38 @@ You SHOULD NOT specify the `renderTo` property for the chart.
 ```
 
 Getting Start with [Highcharts](http://www.highcharts.com/docs/getting-started/your-first-chart).
+
+## Development
+
+Learn more about [Gitbook Plugin](https://toolchain.gitbook.com/plugins/testing.html)
+
+### Prepare
+
+Testing your plugin on your book before publishing it is possible using npm link.
+
+In the plugin's folder, run:
+
+```
+npm link
+```
+
+Then in the _test_ folder:
+
+```
+npm link gitbook-plugin-chart
+```
+
+### Start
+
+In the plugin's folder, run:
+
+```
+npm run dev
+```
+
+Then in the _test_ folder:
+
+```
+npm start
+```
 

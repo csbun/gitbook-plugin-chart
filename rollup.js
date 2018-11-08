@@ -3,16 +3,18 @@ var babel = require('rollup-plugin-babel');
 
 rollup.rollup({
   // 入口文件
-  entry: 'src/index.js',
+  input: 'src/index.js',
   plugins: [
-    babel()
+    babel({
+      exclude: 'node_modules/**',
+    }),
   ]
 }).then( function ( bundle ) {
   console.log('build: ' + new Date());
   // CommonJS
   bundle.write({
     format: 'cjs',
-    dest: 'build/index.js'
+    file: 'index.js'
   });
 }).catch(function (e) {
   console.log(e);
