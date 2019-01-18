@@ -42,6 +42,18 @@ module.exports = {
           type = _this$config$get.type;
 
       chartScriptFn = chartFns[type];
+    },
+    "page:before": function pageBefore(page) {
+      // Get all code texts
+      var flows = page.content.match(/^```chart((.*\n)+?)?```$/igm); // Begin replace
+
+      if (flows instanceof Array) {
+        for (var i = 0, len = flows.length; i < len; i++) {
+          page.content = page.content.replace(flows[i], flows[i].replace(/^```chart/, '{% chart %}').replace(/```$/, '{% endchart %}'));
+        }
+      }
+
+      return page;
     }
   },
   blocks: {
