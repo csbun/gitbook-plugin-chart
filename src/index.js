@@ -14,6 +14,20 @@ module.exports = {
         init: function () {
             const { type } = this.config.get('pluginsConfig.chart');
             chartScriptFn = chartFns[type];
+        },
+        
+        "page:before": function(page) {
+            // Get all code texts
+            let flows = page.content.match(/^```chart((.*\n)+?)?```$/igm);
+            // Begin replace
+            if (flows instanceof Array) {
+                for (let i = 0, len = flows.length; i < len; i++) {
+                    page.content = page.content.replace(
+                        flows[i],
+                        flows[i].replace(/^```chart/, '{% chart %}').replace(/```$/, '{% endchart %}'));
+                }
+            }
+            return page;
         }
     },
     blocks: {
