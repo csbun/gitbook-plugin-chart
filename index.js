@@ -13,6 +13,13 @@ function c3(id, bodyString) {
 }
 function highcharts(id, bodyString) {
   try {
+
+    // In some cases bodyString contains escape characters right before the array brackets
+    // \[ \]
+    // These escape characters must be removed before parsing the json document.
+    bodyString = bodyString.replace(/\\\[/g, '[');
+    bodyString = bodyString.replace(/\\\]/g, ']');
+
     var body = JSON.parse(bodyString); // http://www.highcharts.com/docs/getting-started/your-first-chart
 
     body.chart = body.chart || {};
