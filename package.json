@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-chart",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Using chart in Gitbook",
   "main": "index.js",
   "engines": {
